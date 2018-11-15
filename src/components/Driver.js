@@ -11,6 +11,9 @@ import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
+// Bootstrap
+import { Row } from 'reactstrap';
+
 // My components
 import SimpleCard from '../partials/SimpleCard'
 
@@ -169,7 +172,7 @@ class Driver extends Component {
 			      </Button>
 		      </form>
 		      <hr/>
-		      <div className="row">
+		      <Row>
 		      	{
 			      	this.state.items.length ?
 								this.state.items.map( (item, index) => {
@@ -181,7 +184,7 @@ class Driver extends Component {
 								<p>Нету элементов</p>
 							</div>
 						}
-		      </div>
+		      </Row>
         </div>
       </section>
     )
