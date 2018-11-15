@@ -5,7 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const styles = {
   root: {
@@ -22,14 +22,14 @@ const styles = {
   }
 };
 
-function ButtonAppBar(props) {
+function ButtonAppBar(props, match, location) {
   const { classes } = props;
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <MenuItem classes={{root: classes.menuItem}}><Link to="/" style={{ textDecoration: 'none', 'color': 'inherit'}}>#Подвезу</Link></MenuItem>
-          <MenuItem classes={{root: classes.menuItem}}><Link to="/passenger/" style={{ textDecoration: 'none', 'color': 'inherit'}}>#Подвезите</Link></MenuItem>
+          <MenuItem classes={{root: classes.menuItem}}><NavLink to="/" style={{ textDecoration: 'none', 'color': 'inherit'}}>#Подвезу</NavLink></MenuItem>
+          <MenuItem classes={{root: classes.menuItem}}><NavLink to="/passenger/" style={{ textDecoration: 'none', 'color': 'inherit'}}>#Подвезите</NavLink></MenuItem>
         </Toolbar>
       </AppBar>
     </div>
