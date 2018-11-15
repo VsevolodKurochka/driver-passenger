@@ -60,7 +60,10 @@ class Driver extends Component {
 			dateSend: date
 		}
 
+		// Push to DB
 		rootRef.push(item);
+
+		// Clear state
 		this.setState({
 			name: "",
 			start: "",
