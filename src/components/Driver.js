@@ -78,7 +78,32 @@ class Driver extends Component {
     this.setState({
       [name]: value,
     });
-  };
+  }
+
+  componentDidMount(){
+  	const rootRef = firebase.database().ref('drivers');
+
+  	rootRef.on('value', (snapshot) => {
+			let items = snapshot.val();
+			
+			let currentItems = [];
+
+			for(let item in items){
+				currentItems.unshift({
+					name: items[item].name,
+					start: items[item].start,
+					end: items[item].end,
+					time: items[item].time,
+					details: items[item].details
+				})
+			}
+			
+			this.setState({
+				items: currentItems
+			});
+
+		});
+  }
 
   render() {
   	const { classes } = this.props;
