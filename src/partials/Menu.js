@@ -5,6 +5,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import MenuItem from '@material-ui/core/MenuItem';
 
+import { Link } from "react-router-dom";
+
 const styles = {
   root: {
     flexGrow: 1,
@@ -12,12 +14,11 @@ const styles = {
   grow: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
   menuItem: {
     color: '#fff'
+  },
+  menuItemLink: {
+    textDecoration: 'none'
   }
 };
 
@@ -27,8 +28,8 @@ function ButtonAppBar(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <MenuItem classes={{root: classes.menuItem}}>Я подвезу</MenuItem>
-          <MenuItem classes={{root: classes.menuItem}}>Меня подвезите</MenuItem>
+          <MenuItem classes={{root: classes.menuItem}}><Link to="/" style={{ textDecoration: 'none', 'color': 'inherit'}}>#Подвезу</Link></MenuItem>
+          <MenuItem classes={{root: classes.menuItem}}><Link to="/passenger/" style={{ textDecoration: 'none', 'color': 'inherit'}}>#Подвезите</Link></MenuItem>
         </Toolbar>
       </AppBar>
     </div>
