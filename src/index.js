@@ -1,10 +1,13 @@
+// General
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './index.css'
 
+// Partials
 import Menu from './partials/Menu'
 
+// Components
 import Driver from './components/Driver'
 import Passenger from './components/Passenger'
 
