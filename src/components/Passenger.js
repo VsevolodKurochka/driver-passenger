@@ -34,6 +34,7 @@ class Passenger extends Component {
 			start: '',
 			end: '',
 			time: '',
+			phone: '',
 			details: '',
 			items: [],
 			speed: 15
@@ -61,6 +62,7 @@ class Passenger extends Component {
 			start: this.state.start,
 			end: this.state.end,
 			time: this.state.time,
+			phone: this.state.phone,
 			details: this.state.details,
 			dateSend: date
 		}
@@ -74,6 +76,7 @@ class Passenger extends Component {
 			start: "",
 			end: "",
 			time: "",
+			phone: "",
 			details: ""
 		});
 	}
@@ -102,6 +105,7 @@ class Passenger extends Component {
 					start: items[item].start,
 					end: items[item].end,
 					time: items[item].time,
+					phone: items[item].phone,
 					details: items[item].details
 				})
 			}
@@ -118,57 +122,70 @@ class Passenger extends Component {
     return (
       <section className='section'>
         <div className="container">
-        	<Typography component="h1" variant="h3">#Подвезите</Typography>
-        	<Typography component="h2" variant="h6" gutterBottom>Заполните форму, чтобы добавить объявление о том, куда вам надо.</Typography>
+        	<Typography component="h1" variant="h3">#Подвезу</Typography>
+        	<Typography component="h2" variant="h6" gutterBottom>Заполните форму, чтобы добавить объявление о поездке</Typography>
 		      <form onSubmit={this.handleForm} noValidate autoComplete="off">
-		      	<TextField
-		          label="Имя и фамилия"
-		          value={this.state.name}
-		          name="name"
-		          onChange={this.handleChange}
-		          margin="normal"
-		          className={classes.textField}
-		          variant="outlined"
-		        />
-		        <TextField
-		          label="Откуда"
-		          value={this.state.start}
-		          name="start"
-		          onChange={this.handleChange}
-		          margin="normal"
-		          className={classes.textField}
-		          variant="outlined"
-		        />
-		        <TextField
-		          label="Куда"
-		          value={this.state.end}
-		          name="end"
-		          onChange={this.handleChange}
-		          margin="normal"
-		          className={classes.textField}
-		          variant="outlined"
-		        />
-		        <TextField
-		          label="Время"
-		          value={this.state.time}
-		          name="time"
-		          onChange={this.handleChange}
-		          margin="normal"
-		          className={classes.textField}
-		          variant="outlined"
-		        />
-		        <TextField
-		          label="Примечания"
-		          value={this.state.details}
-		          name="details"
-		          onChange={this.handleChange}
-		          margin="normal"
-		          className={classes.textField}
-		          variant="outlined"
-		        />
-		        <Button type="submit" variant="contained" size="large" color="primary" className={classes.button}>
+		      	<div>
+		      		<TextField
+			          label="Имя и фамилия"
+			          value={this.state.name}
+			          name="name"
+			          onChange={this.handleChange}
+			          margin="normal"
+			          className={classes.textField}
+			          variant="outlined"
+			        />
+			        <TextField
+			          label="Откуда"
+			          value={this.state.start}
+			          name="start"
+			          onChange={this.handleChange}
+			          margin="normal"
+			          className={classes.textField}
+			          variant="outlined"
+			        />
+			        <TextField
+			          label="Куда"
+			          value={this.state.end}
+			          name="end"
+			          onChange={this.handleChange}
+			          margin="normal"
+			          className={classes.textField}
+			          variant="outlined"
+			        />
+		      	</div>
+		        <div>
+		        	<TextField
+			          label="Время"
+			          value={this.state.time}
+			          name="time"
+			          onChange={this.handleChange}
+			          margin="normal"
+			          className={classes.textField}
+			          variant="outlined"
+			        />
+			        <TextField
+			          label="Телефон"
+			          value={this.state.phone}
+			          name="phone"
+			          onChange={this.handleChange}
+			          margin="normal"
+			          className={classes.textField}
+			          variant="outlined"
+			        />
+			        <TextField
+			          label="Примечания"
+			          value={this.state.details}
+			          name="details"
+			          onChange={this.handleChange}
+			          margin="normal"
+			          className={classes.textField}
+			          variant="outlined"
+			        />
+		        </div>
+		        <div><Button type="submit" variant="contained" size="large" color="primary" className={classes.button}>
 			        Заполнить форму
-			      </Button>
+			      </Button></div>
 		      </form>
 		      <hr/>
 		      <Row>
