@@ -30,12 +30,44 @@ class Driver extends Component {
 			end: '',
 			time: '',
 			details: '',
+			items: [],
 			speed: 15
 		};
 	}
 
 	handleForm = event => {
 		event.preventDefault();
+
+		const rootRef = firebase.database().ref('drivers');
+
+		let currentDate = new Date();
+		
+		const date = {
+			timestamp: currentDate,
+			year: currentDate.getFullYear(),
+			month: currentDate.getMonth(),
+			date: currentDate.getDate(),
+			hours: currentDate.getHours(),
+			minutes: currentDate.getMinutes()
+		}
+
+		const item = {
+			name: this.state.name,
+			start: this.state.start,
+			end: this.state.end,
+			time: this.state.time,
+			details: this.state.details,
+			dateSend: date
+		}
+
+		rootRef.push(item);
+		this.setState({
+			name: "",
+			start: "",
+			end: "",
+			time: "",
+			details: ""
+		});
 	}
 	
 	handleChange = event => {
@@ -48,15 +80,6 @@ class Driver extends Component {
     });
   };
 
-	componentDidMount(){
-		const rootRef = firebase.database().ref().child('drivers');
-		const speedRef = rootRef.child('speed');
-		speedRef.on('value', snap => {
-			this.setState({
-				speed: snap.val()
-			});
-		});
-	}
   render() {
   	const { classes } = this.props;
     return (
@@ -77,7 +100,7 @@ class Driver extends Component {
 		        <TextField
 		          label="Откуда"
 		          value={this.state.start}
-		          name="name"
+		          name="start"
 		          onChange={this.handleChange}
 		          margin="normal"
 		          className={classes.textField}
@@ -86,7 +109,7 @@ class Driver extends Component {
 		        <TextField
 		          label="Куда"
 		          value={this.state.end}
-		          name="name"
+		          name="end"
 		          onChange={this.handleChange}
 		          margin="normal"
 		          className={classes.textField}
@@ -95,7 +118,7 @@ class Driver extends Component {
 		        <TextField
 		          label="Время"
 		          value={this.state.time}
-		          name="name"
+		          name="time"
 		          onChange={this.handleChange}
 		          margin="normal"
 		          className={classes.textField}
@@ -104,7 +127,7 @@ class Driver extends Component {
 		        <TextField
 		          label="Примечания"
 		          value={this.state.details}
-		          name="name"
+		          name="details"
 		          onChange={this.handleChange}
 		          margin="normal"
 		          className={classes.textField}
