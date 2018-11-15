@@ -12,7 +12,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 // My components
-import Item from './partials/Item'
+import Item from '../partials/Item'
 
 const styles = theme => ({
   textField: {
@@ -172,7 +172,10 @@ class Driver extends Component {
 		      <div className="row">
 		      	{
 			      	this.state.items.length ?
-								this.state.items.map( (item, index) => {<Item data={item} key={item.id}/>} )
+								this.state.items.map( (item, index) => {
+										return <Item data={item} />
+									} 
+								)
 							:
 							<div>
 								<p>Нету элементов</p>
