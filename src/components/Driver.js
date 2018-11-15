@@ -12,7 +12,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 // My components
-import Item from '../partials/Item'
+import SimpleCard from '../partials/SimpleCard'
 
 const styles = theme => ({
   textField: {
@@ -173,7 +173,7 @@ class Driver extends Component {
 		      	{
 			      	this.state.items.length ?
 								this.state.items.map( (item, index) => {
-										return <Item data={item} />
+										return <SimpleCard data={item} />
 									} 
 								)
 							:
