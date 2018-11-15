@@ -32,7 +32,7 @@ function SimpleCard(props) {
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
-    <Col sm="6">
+    <Col sm="6" md="4">
       <Card className={classes.card}>
         <CardContent>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
