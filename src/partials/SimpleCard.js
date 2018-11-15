@@ -36,21 +36,17 @@ function SimpleCard(props) {
       <Card className={classes.card}>
         <CardContent>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
-            {props.data.name}
+            Имя: {props.data.name}
           </Typography>
           <Typography variant="h5" component="h2">
-            be
-            {bull}
-            nev
-            {bull}o{bull}
-            lent
+            {props.data.start} - {props.data.end}
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
-            adjective
+            Дата поездки: {props.data.time}
           </Typography>
           <Typography component="p">
-            well meaning and kindly.
-            <br />
+            Детали: {props.data.details}
+            <br/>
           </Typography>
         </CardContent>
       </Card>
