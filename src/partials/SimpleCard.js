@@ -42,10 +42,10 @@ function SimpleCard(props) {
             {props.data.start} - {props.data.end}
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
-            Дата поездки: {props.data.time}
+            Дата: {props.data.time}
           </Typography>
           <Typography component="p">
-            Детали: {props.data.details}
+            Примечания: {props.data.details}
             <br/>
           </Typography>
         </CardContent>

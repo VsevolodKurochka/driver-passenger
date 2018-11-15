@@ -176,7 +176,7 @@ class Driver extends Component {
 		      	{
 			      	this.state.items.length ?
 								this.state.items.map( (item, index) => {
-										return <SimpleCard data={item} />
+										return <SimpleCard data={item} key={index} />
 									} 
 								)
 							:
