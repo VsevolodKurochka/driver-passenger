@@ -9,7 +9,10 @@ import * as firebase from 'firebase'
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
+
+// My components
+import Item from './partials/Item'
 
 const styles = theme => ({
   textField: {
@@ -165,6 +168,17 @@ class Driver extends Component {
 			        Заполнить форму
 			      </Button>
 		      </form>
+		      <hr/>
+		      <div className="row">
+		      	{
+			      	this.state.items.length ?
+								this.state.items.map( (item, index) => {<Item data={item} key={item.id}/>} )
+							:
+							<div>
+								<p>Нету элементов</p>
+							</div>
+						}
+		      </div>
         </div>
       </section>
     )
