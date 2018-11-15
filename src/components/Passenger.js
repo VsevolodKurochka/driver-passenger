@@ -122,8 +122,8 @@ class Passenger extends Component {
     return (
       <section className='section'>
         <div className="container">
-        	<Typography component="h1" variant="h3">#Подвезу</Typography>
-        	<Typography component="h2" variant="h6" gutterBottom>Заполните форму, чтобы добавить объявление о поездке</Typography>
+        	<Typography component="h1" variant="h3">#Подвезите</Typography>
+        	<Typography component="h2" variant="h6" gutterBottom>Заполните форму, чтобы добавить объявление о том, куда вам надо.</Typography>
 		      <form onSubmit={this.handleForm} noValidate autoComplete="off">
 		      	<div>
 		      		<TextField
