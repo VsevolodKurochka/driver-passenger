@@ -9,7 +9,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 // Bootstrap
-import { Row } from 'reactstrap'
+import { Container, Row } from 'reactstrap'
 
 // My components
 import SimpleCard from '../partials/SimpleCard'
@@ -35,7 +35,7 @@ class Template extends Component {
 		const { classes } = this.props;
 		return (
 			<section className='section'>
-				<div className="container">
+				<Container>
 					<Typography component="h1" variant="h3" className={classes.title}>{this.props.title}</Typography>
 					<Typography component="h2" variant="h6" gutterBottom>{this.props.subtitle}</Typography>
 					<form onSubmit={this.props.handleForm} noValidate autoComplete="off">
@@ -57,7 +57,7 @@ class Template extends Component {
 							Заполнить форму
 						</Button>
 					</form>
-				</div>
+				</Container>
 			</section>
 		)
 	}
