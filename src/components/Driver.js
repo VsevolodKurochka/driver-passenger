@@ -101,8 +101,7 @@ export default class Driver extends Component {
 		const { classes } = this.props;
 		return (
 			<Template
-				title="Driver"
-				subtitle="Driver"
+				title="#Подвезу"
 				handleForm={this.handleForm}
 				inputs={
 					[
