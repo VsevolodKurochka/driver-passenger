@@ -31,9 +31,6 @@ class Template extends Component {
 	static propTypes = {
 		classes: PropTypes.object.isRequired
 	}
-	constructor(){
-		super();
-	}
 	render() {
 		const { classes } = this.props;
 		return (
