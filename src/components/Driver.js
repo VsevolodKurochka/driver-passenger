@@ -10,18 +10,42 @@ import Template from '../layouts/template'
 
 
 export default class Driver extends Component {
-	constructor(){
-		super();
-		this.state = {
-			name: '',
-			start: '',
-			end: '',
-			time: '',
-			phone: '',
-			details: '',
-			items: [],
-			speed: 15
-		};
+
+	state = {
+		form: [
+			{
+				name: "name",
+				title: "Имя",
+				value: ""
+			},
+			{
+				name: "start",
+				title: "Откуда",
+				value: ""
+			},
+			{
+				name: "end",
+				title: "Куда",
+				value: ""
+			},
+			{
+				name: "time",
+				title: "Время",
+				value: ""
+			},
+			{
+				name: "phone",
+				title: "Телефон",
+				value: ""
+			},
+			{
+				name: "details",
+				title: "Примечания",
+				value: ""
+			},
+		],
+		items: [],
+		speed: 15
 	}
 
 	handleForm = event => {
@@ -106,6 +130,9 @@ export default class Driver extends Component {
     	<Template
     		title="Driver"
     		subtitle="Driver"
+    		handleForm={this.handleForm}
+    		inputs={this.state.form}
+    		inputChange={this.handleChange}
     	/>
     )
   }
