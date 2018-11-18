@@ -45,9 +45,6 @@ class Template extends Component {
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom className={classes.title}>
               {this.props.title}
             </Typography>
-            <Typography variant="h6" align="center" color="textSecondary" paragraph>
-              {this.props.subtitle}
-            </Typography>
           </div>
         </div>
 				<div className="container">
