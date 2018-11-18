@@ -8,18 +8,21 @@ import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
+// Bootstrap
+import { Row } from 'reactstrap'
+
 // My components
 import SimpleCard from '../partials/SimpleCard'
 
 const styles = theme => ({
 	heroUnit: {
-    backgroundColor: theme.palette.background.paper,
-  },
-  heroContent: {
-    maxWidth: 600,
-    margin: '0 auto',
-    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
-  },
+		backgroundColor: theme.palette.background.paper,
+	},
+	heroContent: {
+		maxWidth: 600,
+		margin: '0 auto',
+		padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
+	},
 	title: {
 		fontWeight: 'bold'
 	},
@@ -41,12 +44,12 @@ class Template extends Component {
 		return (
 			<section className='section'>
 				<div className={classes.heroUnit}>
-          <div className={classes.heroContent}>
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom className={classes.title}>
-              {this.props.title}
-            </Typography>
-          </div>
-        </div>
+					<div className={classes.heroContent}>
+						<Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom className={classes.title}>
+							{this.props.title}
+						</Typography>
+					</div>
+				</div>
 				<div className="container">
 					<form onSubmit={this.props.handleForm} noValidate autoComplete="off">
 						{
@@ -69,6 +72,28 @@ class Template extends Component {
 							Заполнить форму
 						</Button>
 					</form>
+					<Row>
+						{
+							this.props.items.length ?
+								this.props.items.map( (item, index) => {
+									return(
+										<SimpleCard 
+											name={item.name}
+											start={item.start}
+											end={item.end}
+											time={item.time}
+											phone={item.phone}
+											details={item.details}
+											key={index} 
+										/>
+									)
+								})
+							:
+							<div>
+								<p>Нету элементов</p>
+							</div>
+						}
+					</Row>
 				</div>
 			</section>
 		)

@@ -29,26 +29,24 @@ const styles = {
 
 function SimpleCard(props) {
   const { classes } = props
-  const phone = props.data.phone
-  const details = props.data.details
+  const phone = props.phone
+  const details = props.details
 
   return (
-    
-
     <Col sm="6" md="4" className="item-column">
       <Card className={classes.card}>
         <CardContent>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
-            Имя: {props.data.name}
+            {props.name}
           </Typography>
           <Typography variant="h6" component="h2" className={classes.subtitle}>
-            {props.data.start} - {props.data.end}
+            {props.start} - {props.end}
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
-            Дата: {props.data.time}
+            Время: {props.time}
           </Typography>
-          {phone ? <Typography className={classes.phone} color="textSecondary">Телефон: <a href={"tel:" + props.data.phone}>{props.data.phone}</a></Typography> : ""}
-          {details ? <Typography component="p">Примечания: {props.data.details}</Typography> : ""}
+          {phone ? <Typography className={classes.phone} color="textSecondary">Телефон: <a href={"tel:" + phone}>{phone}</a></Typography> : ""}
+          {details ? <Typography component="p">Примечания: {details}</Typography> : ""}
         </CardContent>
       </Card>
     </Col>

@@ -138,6 +138,7 @@ export default class Driver extends Component {
 					]
 				}
 				inputChange={this.handleChange}
+				items={this.state.items}
 			/>
 		)
 	}
