@@ -34,6 +34,9 @@ firebase.initializeApp(config);
 
 
 const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
   palette: {
     background: {
       default: "#fafafa"

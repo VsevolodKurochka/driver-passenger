@@ -8,13 +8,18 @@ import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
-// Bootstrap
-import { Container, Row } from 'reactstrap'
-
 // My components
 import SimpleCard from '../partials/SimpleCard'
 
 const styles = theme => ({
+	heroUnit: {
+    backgroundColor: theme.palette.background.paper,
+  },
+  heroContent: {
+    maxWidth: 600,
+    margin: '0 auto',
+    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
+  },
 	title: {
 		fontWeight: 'bold'
 	},
@@ -35,29 +40,39 @@ class Template extends Component {
 		const { classes } = this.props;
 		return (
 			<section className='section'>
-				<Container>
-					<Typography component="h1" variant="h3" className={classes.title}>{this.props.title}</Typography>
-					<Typography component="h2" variant="h6" gutterBottom>{this.props.subtitle}</Typography>
+				<div className={classes.heroUnit}>
+          <div className={classes.heroContent}>
+            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom className={classes.title}>
+              {this.props.title}
+            </Typography>
+            <Typography variant="h6" align="center" color="textSecondary" paragraph>
+              {this.props.subtitle}
+            </Typography>
+          </div>
+        </div>
+				<div className="container">
 					<form onSubmit={this.props.handleForm} noValidate autoComplete="off">
 						{
 							this.props.inputs.map( (input,index) => {
-								return <TextField
-									label={input.title}
-									value={input.value}
-									name={input.name}
-									onChange={this.props.inputChange}
-									margin="normal"
-									className={classes.textField}
-									variant="outlined"
-									key={`Input: ${index}`}
-								/>
+								return (
+									<TextField
+										label={input.label}
+										value={input.value}
+										name={input.name}
+										onChange={this.props.inputChange}
+										margin="normal"
+										className={classes.textField}
+										variant="outlined"
+										key={`Input: ${index}`}
+									/>
+								)
 							})
 						}
 						<Button type="submit" variant="contained" size="large" color="primary" className={classes.button}>
 							Заполнить форму
 						</Button>
 					</form>
-				</Container>
+				</div>
 			</section>
 		)
 	}

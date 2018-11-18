@@ -12,40 +12,13 @@ import Template from '../layouts/template'
 export default class Driver extends Component {
 
 	state = {
-		form: [
-			{
-				name: "name",
-				title: "Имя",
-				value: ""
-			},
-			{
-				name: "start",
-				title: "Откуда",
-				value: ""
-			},
-			{
-				name: "end",
-				title: "Куда",
-				value: ""
-			},
-			{
-				name: "time",
-				title: "Время",
-				value: ""
-			},
-			{
-				name: "phone",
-				title: "Телефон",
-				value: ""
-			},
-			{
-				name: "details",
-				title: "Примечания",
-				value: ""
-			},
-		],
-		items: [],
-		speed: 15
+		name: "",
+		start: "",
+		end: "",
+		time: "",
+		phone: "",
+		details: "",
+		items: []
 	}
 
 	handleForm = event => {
@@ -93,15 +66,15 @@ export default class Driver extends Component {
 		const name = event.target.name;
 		const value = event.target.value;
 
-    this.setState({
-      [name]: value,
-    });
-  }
+		this.setState({
+			[name]: value,
+		});
+	}
 
-  componentDidMount(){
-  	const rootRef = firebase.database().ref('drivers');
+	componentDidMount(){
+		const rootRef = firebase.database().ref('drivers');
 
-  	rootRef.on('value', (snapshot) => {
+		rootRef.on('value', (snapshot) => {
 			let items = snapshot.val();
 			
 			let currentItems = [];
@@ -122,18 +95,51 @@ export default class Driver extends Component {
 			});
 
 		});
-  }
+	}
 
-  render() {
-  	const { classes } = this.props;
-    return (
-    	<Template
-    		title="Driver"
-    		subtitle="Driver"
-    		handleForm={this.handleForm}
-    		inputs={this.state.form}
-    		inputChange={this.handleChange}
-    	/>
-    )
-  }
+	render() {
+		const { classes } = this.props;
+		return (
+			<Template
+				title="Driver"
+				subtitle="Driver"
+				handleForm={this.handleForm}
+				inputs={
+					[
+						{
+							name: "name",
+							label: "Имя",
+							value: this.state.name
+						},
+						{
+							name: "start",
+							label: "Откуда",
+							value: this.state.start
+						},
+						{
+							name: "end",
+							label: "Куда",
+							value: this.state.end
+						},
+						{
+							name: "time",
+							label: "Время",
+							value: this.state.time
+						},
+						{
+							name: "phone",
+							label: "Телефон",
+							value: this.state.phone
+						},
+						{
+							name: "details",
+							label: "Примечания",
+							value: this.state.details
+						}
+					]
+				}
+				inputChange={this.handleChange}
+			/>
+		)
+	}
 }
