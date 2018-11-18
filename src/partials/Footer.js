@@ -34,12 +34,7 @@ class Footer extends Component {
 		return(
 			<div>
 				<footer className={classes.root}>
-					<Typography variant="h6" align="center" gutterBottom>
-	          Footer
-	        </Typography>
-	        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-	          Something here to give the footer a purpose!
-	        </Typography>
+	        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">Ⓒ Всеволод Курочка</Typography>
 				</footer>
 				<Tooltip title="FAB">
 	        <Button variant="fab" color="secondary" className={classes.fixed}>
