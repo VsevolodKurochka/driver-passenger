@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import MenuItem from '@material-ui/core/MenuItem';
+import { withStyles } from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import MenuItem from '@material-ui/core/MenuItem'
 
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom"
 
 
 const styles = theme => ({
@@ -30,18 +30,20 @@ class Menu extends Component {
 		classes: PropTypes.object.isRequired
 	}
 
-	return (
+	render(){
 		const { classes } = this.props;
 
-		<div className={classes.root}>
-			<AppBar position="static">
-				<Toolbar>
-					<NavLink to="/" style={{ textDecoration: 'none', 'color': 'inherit'}}>#Подвезу</NavLink>
-					<NavLink to="/passenger/" style={{ textDecoration: 'none', 'color': 'inherit'}}>#Подвезите</NavLink>
-				</Toolbar>
-			</AppBar>
-		</div>
-	);
+		return(
+			<div className={classes.root}>
+				<AppBar position="static">
+					<Toolbar>
+						<NavLink to="/" style={{ textDecoration: 'none', 'color': 'inherit'}}>#Подвезу</NavLink>
+						<NavLink to="/passenger/" style={{ textDecoration: 'none', 'color': 'inherit'}}>#Подвезите</NavLink>
+					</Toolbar>
+				</AppBar>
+			</div>
+		);
+	}
 }
 
 export default withStyles(styles)(Menu);
