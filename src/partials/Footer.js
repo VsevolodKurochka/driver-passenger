@@ -36,7 +36,7 @@ class Footer extends Component {
 				<footer className={classes.root}>
 	        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">Ⓒ Всеволод Курочка</Typography>
 				</footer>
-				<Tooltip title="FAB">
+				<Tooltip title="Нажмите, чтобы открыть форму">
 	        <Button variant="fab" color="secondary" className={classes.fixed}>
 	          <AddIcon />
 	        </Button>

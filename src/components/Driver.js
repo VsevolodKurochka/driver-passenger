@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import * as firebase from 'firebase'
 
 // Template
-import Template from '../layouts/template'
+import Template from '../layouts/Template'
 
 
 export default class Driver extends Component {
