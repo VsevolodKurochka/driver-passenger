@@ -14,6 +14,7 @@ export default class Driver extends Component {
 		name: "",
 		start: "",
 		end: "",
+		day: new Date(),
 		time: new Date(),
 		phone: "",
 		details: "",
@@ -48,6 +49,7 @@ export default class Driver extends Component {
 			name: this.state.name,
 			start: this.state.start,
 			end: this.state.end,
+			day: this.state.day,
 			time: this.state.time,
 			phone: this.state.phone,
 			details: this.state.details,
@@ -62,6 +64,7 @@ export default class Driver extends Component {
 			name: "",
 			start: "",
 			end: "",
+			day: new Date(),
 			time: new Date(),
 			phone: "",
 			details: ""
@@ -77,10 +80,15 @@ export default class Driver extends Component {
 		});
 	}
 
-	handleTimeChange = (time) => {
-		console.log(time.getHours());
+	handleTimeChange = (date) => {
 		this.setState({
-			time: time
+			time: date
+		});
+	}
+
+	handleDateChange = (date) => {
+		this.setState({
+			day: date
 		});
 	}
 
@@ -97,6 +105,7 @@ export default class Driver extends Component {
 					name: items[item].name,
 					start: items[item].start,
 					end: items[item].end,
+					day: items[item].day,
 					time: items[item].time,
 					phone: items[item].phone,
 					details: items[item].details
@@ -135,6 +144,11 @@ export default class Driver extends Component {
 								value: this.state.end
 							},
 							{
+								name: "day",
+								label: "День",
+								value: this.state.day
+							},
+							{
 								name: "time",
 								label: "Время",
 								value: this.state.time
@@ -153,6 +167,7 @@ export default class Driver extends Component {
 					}
 					inputChange={this.handleChange}
 					handleTimeChange={this.handleTimeChange}
+					handleDateChange={this.handleDateChange}
 
 					statusModalOpen={this.state.statusModalOpen}
 					functionModalOpen={this.functionModalOpen}

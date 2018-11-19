@@ -9,13 +9,19 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import Tooltip from '@material-ui/core/Tooltip'
-import TimeInput from 'material-ui-time-picker'
 
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+// Pickers
+import { MuiPickersUtilsProvider } from 'material-ui-pickers'
+import DateFnsUtils from '@date-io/date-fns'
+import { TimePicker } from 'material-ui-pickers'
+import { DatePicker } from 'material-ui-pickers'
+import { DateTimePicker } from 'material-ui-pickers'
+
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogTitle from '@material-ui/core/DialogTitle'
 
 
 // My components
@@ -101,7 +107,7 @@ class Template extends Component {
 				<Dialog
 					open={this.props.statusModalOpen}
 					onClose={this.props.functionModalClose}
-					maxWidth='xs'
+					maxWidth='sm'
 				>
 					<DialogTitle>Заполните форму</DialogTitle>
           <DialogContent>
@@ -116,13 +122,49 @@ class Template extends Component {
 								onChange={this.props.inputChange}
 								className={classes.textField}
 							/>
-							<TimeInput
-								mode='24h'
-								name={this.props.inputs[3].name}
-								value={this.props.inputs[3].value}
-								onChange={(time)=> this.props.handleTimeChange(time)}
-								cancelLabel="Закрыть"
-								okLabel="Сохранить"
+							<div className="row">
+								<div className="col-12 col-sm-6">
+									<TextField
+										label={this.props.inputs[1].label}
+										value={this.props.inputs[1].value}
+										name={this.props.inputs[1].name}
+										onChange={this.props.inputChange}
+										className={classes.textField}
+									/>
+								</div>
+								<div className="col-12 col-sm-6">
+									<TextField
+										label={this.props.inputs[2].label}
+										value={this.props.inputs[2].value}
+										name={this.props.inputs[2].name}
+										onChange={this.props.inputChange}
+										className={classes.textField}
+									/>
+								</div>
+							</div>
+							<MuiPickersUtilsProvider utils={DateFnsUtils}>
+				        <div className="row">
+				          <div className="col-12 col-sm-6">
+				          	<DatePicker value={this.props.inputs[3].value} label={this.props.inputs[3].label} onChange={this.props.handleDateChange} />
+				          </div>
+				          <div className="col-12 col-sm-6">
+				          	<TimePicker value={this.props.inputs[4].value} ampm={false} label={this.props.inputs[4].label} onChange={this.props.handleTimeChange} />
+				          </div>
+				          
+				        </div>
+				      </MuiPickersUtilsProvider>
+							<TextField
+								label={this.props.inputs[5].label}
+								value={this.props.inputs[5].value}
+								name={this.props.inputs[5].name}
+								onChange={this.props.inputChange}
+								className={classes.textField}
+							/>
+							<TextField
+								label={this.props.inputs[6].label}
+								value={this.props.inputs[6].value}
+								name={this.props.inputs[6].name}
+								onChange={this.props.inputChange}
 								className={classes.textField}
 							/>
 							<Button type="submit" variant="contained" size="large" color="primary" fullWidth={true} className={classes.button}>
