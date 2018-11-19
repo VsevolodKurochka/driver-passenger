@@ -10,7 +10,13 @@ import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import Tooltip from '@material-ui/core/Tooltip'
 import TimeInput from 'material-ui-time-picker'
-import Modal from '@material-ui/core/Modal'
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 
 // My components
 import SimpleCard from '../partials/SimpleCard'
@@ -18,6 +24,10 @@ import SimpleCard from '../partials/SimpleCard'
 const styles = theme => ({
 	heroUnit: {
 		backgroundColor: theme.palette.background.paper,
+	},
+	container: {
+		marginTop: theme.spacing.unit * 5,
+		marginBottom: theme.spacing.unit * 5
 	},
 	heroContent: {
 		maxWidth: 600,
@@ -28,8 +38,10 @@ const styles = theme => ({
 		fontWeight: 'bold'
 	},
 	textField: {
+		width: "100%",
 		marginLeft: theme.spacing.unit,
 		marginRight: theme.spacing.unit,
+		marginBottom: theme.spacing.unit * 2
 	},
 	button: {
 		margin: theme.spacing.unit,
@@ -38,17 +50,7 @@ const styles = theme => ({
 		position: 'fixed',
 		bottom: theme.spacing.unit * 2,
 		right: theme.spacing.unit * 3,
-	},
-	paper: {
-		position: 'absolute',
-		top: "50%",
-		left: "50%",
-		transform: "translate(-50%,-50%)",
-		width: theme.spacing.unit * 50,
-		backgroundColor: theme.palette.background.paper,
-		boxShadow: theme.shadows[5],
-		padding: theme.spacing.unit * 4,
-	},
+	}
 });
 
 class Template extends Component {
@@ -66,7 +68,7 @@ class Template extends Component {
 						</Typography>
 					</div>
 				</div>
-				<div className="container">
+				<div className={"container " + classes.container}>
 					
 					<div className="row">
 						{
@@ -96,23 +98,26 @@ class Template extends Component {
 						<AddIcon />
 					</Button>
 				</Tooltip>
-				<Modal
+				<Dialog
 					open={this.props.statusModalOpen}
 					onClose={this.props.functionModalClose}
+					maxWidth='xs'
 				>
-					<div className={classes.paper}>
-						<Typography variant="h6">Заголовок</Typography>
-						<form onSubmit={this.props.handleForm} autoComplete="off">
+					<DialogTitle>Заполните форму</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Чтобы добавить ваше объявление в общую ленту.
+            </DialogContentText>
+            <form onSubmit={this.props.handleForm} autoComplete="off">
 							<TextField
 								label={this.props.inputs[0].label}
 								value={this.props.inputs[0].value}
 								name={this.props.inputs[0].name}
 								onChange={this.props.inputChange}
-								margin="normal"
 								className={classes.textField}
 							/>
 							<TimeInput
-								mode='12h'
+								mode='24h'
 								name={this.props.inputs[3].name}
 								value={this.props.inputs[3].value}
 								onChange={(time)=> this.props.handleTimeChange(time)}
@@ -120,12 +125,12 @@ class Template extends Component {
 								okLabel="Сохранить"
 								className={classes.textField}
 							/>
-							<Button type="submit" variant="contained" size="large" color="primary" className={classes.button}>
+							<Button type="submit" variant="contained" size="large" color="primary" fullWidth={true} className={classes.button}>
 								Заполнить форму
 							</Button>
 						</form>
-					</div>
-				</Modal>
+          </DialogContent>
+				</Dialog>
 			</section>
 		)
 	}
