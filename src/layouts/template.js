@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import Tooltip from '@material-ui/core/Tooltip'
 import TimeInput from 'material-ui-time-picker'
-
+import Modal from '@material-ui/core/Modal'
 
 // My components
 import SimpleCard from '../partials/SimpleCard'
@@ -39,6 +39,16 @@ const styles = theme => ({
 		bottom: theme.spacing.unit * 2,
 		right: theme.spacing.unit * 3,
 	},
+	paper: {
+		position: 'absolute',
+		top: "50%",
+		left: "50%",
+		transform: "translate(-50%,-50%)",
+		width: theme.spacing.unit * 50,
+		backgroundColor: theme.palette.background.paper,
+		boxShadow: theme.shadows[5],
+		padding: theme.spacing.unit * 4,
+	},
 });
 
 class Template extends Component {
@@ -57,28 +67,7 @@ class Template extends Component {
 					</div>
 				</div>
 				<div className="container">
-					<form onSubmit={this.props.handleForm} autoComplete="off">
-						<TextField
-							label={this.props.inputs[0].label}
-							value={this.props.inputs[0].value}
-							name={this.props.inputs[0].name}
-							onChange={this.props.inputChange}
-							margin="normal"
-							className={classes.textField}
-						/>
-						<TimeInput
-							mode='12h'
-							name={this.props.inputs[3].name}
-							value={this.props.inputs[3].value}
-							onChange={(time)=> this.props.handleTimeChange(time)}
-							cancelLabel="Закрыть"
-							okLabel="Сохранить"
-							className={classes.textField}
-						/>
-						<Button type="submit" variant="contained" size="large" color="primary" className={classes.button}>
-							Заполнить форму
-						</Button>
-					</form>
+					
 					<div className="row">
 						{
 							this.props.items.length ?
@@ -102,11 +91,41 @@ class Template extends Component {
 						}
 					</div>
 				</div>
-				<Tooltip title="Нажмите, чтобы открыть форму">
-					<Button variant="fab" color="secondary" className={classes.fixed}>
+				<Tooltip title="Нажмите, чтобы добавить ">
+					<Button variant="fab" color="secondary" className={classes.fixed} onClick={this.props.functionModalOpen}>
 						<AddIcon />
 					</Button>
 				</Tooltip>
+				<Modal
+					open={this.props.statusModalOpen}
+					onClose={this.props.functionModalClose}
+				>
+					<div className={classes.paper}>
+						<Typography variant="h6">Заголовок</Typography>
+						<form onSubmit={this.props.handleForm} autoComplete="off">
+							<TextField
+								label={this.props.inputs[0].label}
+								value={this.props.inputs[0].value}
+								name={this.props.inputs[0].name}
+								onChange={this.props.inputChange}
+								margin="normal"
+								className={classes.textField}
+							/>
+							<TimeInput
+								mode='12h'
+								name={this.props.inputs[3].name}
+								value={this.props.inputs[3].value}
+								onChange={(time)=> this.props.handleTimeChange(time)}
+								cancelLabel="Закрыть"
+								okLabel="Сохранить"
+								className={classes.textField}
+							/>
+							<Button type="submit" variant="contained" size="large" color="primary" className={classes.button}>
+								Заполнить форму
+							</Button>
+						</form>
+					</div>
+				</Modal>
 			</section>
 		)
 	}

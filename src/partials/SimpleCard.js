@@ -30,7 +30,7 @@ function SimpleCard(props) {
   const details = props.details
 
   return (
-    <div className="col-sm-6 item-column">
+    <div className="col-12 col-sm-6 col-md-4 item-column">
       <Card className={classes.card}>
         <CardContent>
           <Typography className={classes.title} color="textSecondary" gutterBottom>

@@ -17,9 +17,17 @@ export default class Driver extends Component {
 		time: new Date(),
 		phone: "",
 		details: "",
+		statusModalOpen: false,
 		items: []
 	}
 
+	functionModalOpen = () => {
+		this.setState({statusModalOpen: true})
+	}
+ 	functionModalClose = () => {
+ 		this.setState({statusModalOpen: false})
+ 	}
+ 
 	handleForm = event => {
 		event.preventDefault();
 
@@ -145,6 +153,11 @@ export default class Driver extends Component {
 					}
 					inputChange={this.handleChange}
 					handleTimeChange={this.handleTimeChange}
+
+					statusModalOpen={this.state.statusModalOpen}
+					functionModalOpen={this.functionModalOpen}
+					functionModalClose={this.functionModalClose}
+					
 					items={this.state.items}
 				/>
 				
