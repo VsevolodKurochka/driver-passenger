@@ -5,7 +5,10 @@ import PropTypes from 'prop-types'
 // Material Design
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
+
 import TextField from '@material-ui/core/TextField'
+import InputMask from 'react-input-mask'
+
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import Tooltip from '@material-ui/core/Tooltip'
@@ -15,10 +18,9 @@ import { MuiPickersUtilsProvider } from 'material-ui-pickers'
 import DateFnsUtils from '@date-io/date-fns'
 import { TimePicker } from 'material-ui-pickers'
 import { DatePicker } from 'material-ui-pickers'
-import { DateTimePicker } from 'material-ui-pickers'
+import ruLocale from 'date-fns/locale/ru'
 
 import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
@@ -47,10 +49,9 @@ const styles = theme => ({
 		width: "100%",
 		marginLeft: theme.spacing.unit,
 		marginRight: theme.spacing.unit,
-		marginBottom: theme.spacing.unit * 2
+		marginBottom: theme.spacing.unit * 3
 	},
 	pickers: {
-		paddingLeft: 10,
 		width: "100%"
 	},
 	button: {
@@ -125,6 +126,7 @@ class Template extends Component {
 								name={this.props.inputs[0].name}
 								onChange={this.props.inputChange}
 								className={classes.textField}
+								required
 							/>
 							<div className="row">
 								<div className="col-12 col-sm-6">
@@ -134,6 +136,7 @@ class Template extends Component {
 										name={this.props.inputs[1].name}
 										onChange={this.props.inputChange}
 										className={classes.textField}
+										required
 									/>
 								</div>
 								<div className="col-12 col-sm-6">
@@ -143,17 +146,22 @@ class Template extends Component {
 										name={this.props.inputs[2].name}
 										onChange={this.props.inputChange}
 										className={classes.textField}
+										required
 									/>
 								</div>
 							</div>
-							<MuiPickersUtilsProvider utils={DateFnsUtils}>
+							<MuiPickersUtilsProvider utils={DateFnsUtils} locale={ruLocale}>
 								<div className="row">
 									<div className="col-12 col-sm-6">
 										<DatePicker 
 											value={this.props.inputs[3].value} 
 											label={this.props.inputs[3].label} 
 											onChange={this.props.handleDateChange}
-											className={classes.pickers}
+											className={classes.textField + " " + classes.pickers}
+											cancelLabel="Закрыть"
+											okLabel="Подтвердить"
+											disablePast={true}
+											required
 										/>
 									</div>
 									<div className="col-12 col-sm-6">
@@ -162,19 +170,31 @@ class Template extends Component {
 											ampm={false}
 											label={this.props.inputs[4].label} 
 											onChange={this.props.handleTimeChange}
-											className={classes.pickers}
+											className={classes.textField + " " + classes.pickers}
+											cancelLabel="Закрыть"
+											okLabel="Подтвердить"
+											required
 										/>
 									</div>
 									
 								</div>
 							</MuiPickersUtilsProvider>
-							<TextField
-								label={this.props.inputs[5].label}
+
+							<InputMask
+								mask="+38 (999) 999 99 99"
 								value={this.props.inputs[5].value}
-								name={this.props.inputs[5].name}
 								onChange={this.props.inputChange}
-								className={classes.textField}
-							/>
+							>
+								{() => <TextField
+									label={this.props.inputs[5].label}
+									value={this.props.inputs[5].value}
+									name={this.props.inputs[5].name}
+									onChange={this.props.inputChange}
+									className={classes.textField}
+									required
+									/>
+								}
+							</InputMask>
 							<TextField
 								label={this.props.inputs[6].label}
 								value={this.props.inputs[6].value}
