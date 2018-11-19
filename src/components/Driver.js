@@ -45,12 +45,30 @@ export default class Driver extends Component {
 			minutes: currentDate.getMinutes()
 		}
 
+		const day = {
+			timestamp: this.state.day,
+			year: this.state.day.getFullYear(),
+			month: this.state.day.getMonth(),
+			date: this.state.day.getDate(),
+			hours: this.state.day.getHours(),
+			minutes: this.state.day.getMinutes()
+		}
+
+		const time = {
+			timestamp: this.state.time,
+			year: this.state.time.getFullYear(),
+			month: this.state.time.getMonth(),
+			date: this.state.time.getDate(),
+			hours: this.state.time.getHours(),
+			minutes: this.state.time.getMinutes()
+		}
+
 		const item = {
 			name: this.state.name,
 			start: this.state.start,
 			end: this.state.end,
-			day: this.state.day,
-			time: this.state.time,
+			day: day,
+			time: time,
 			phone: this.state.phone,
 			details: this.state.details,
 			dateSend: date
@@ -67,8 +85,10 @@ export default class Driver extends Component {
 			day: new Date(),
 			time: new Date(),
 			phone: "",
-			details: ""
+			details: "",
+			statusModalOpen: false
 		});
+
 	}
 	
 	handleChange = event => {
