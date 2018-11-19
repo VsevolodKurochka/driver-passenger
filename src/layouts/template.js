@@ -7,6 +7,8 @@ import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import AddIcon from '@material-ui/icons/Add'
+import Tooltip from '@material-ui/core/Tooltip'
 
 // Bootstrap
 import { Row } from 'reactstrap'
@@ -33,6 +35,11 @@ const styles = theme => ({
 	button: {
 		margin: theme.spacing.unit,
 	},
+	fixed: {
+    position: 'fixed',
+    bottom: theme.spacing.unit * 2,
+    right: theme.spacing.unit * 3,
+  },
 });
 
 class Template extends Component {
@@ -51,23 +58,15 @@ class Template extends Component {
 					</div>
 				</div>
 				<div className="container">
-					<form onSubmit={this.props.handleForm} noValidate autoComplete="off">
-						{
-							this.props.inputs.map( (input,index) => {
-								return (
-									<TextField
-										label={input.label}
-										value={input.value}
-										name={input.name}
-										onChange={this.props.inputChange}
-										margin="normal"
-										className={classes.textField}
-										variant="outlined"
-										key={`Input: ${index}`}
-									/>
-								)
-							})
-						}
+					<form onSubmit={this.props.handleForm} autoComplete="off">
+						<TextField
+							label={this.props.inputs[0].label}
+							value={this.props.inputs[0].value}
+							name={this.props.inputs[0].name}
+							onChange={this.props.inputChange}
+							margin="normal"
+							className={classes.textField}
+						/>
 						<Button type="submit" variant="contained" size="large" color="primary" className={classes.button}>
 							Заполнить форму
 						</Button>
@@ -95,6 +94,11 @@ class Template extends Component {
 						}
 					</Row>
 				</div>
+				<Tooltip title="Нажмите, чтобы открыть форму">
+	        <Button variant="fab" color="secondary" className={classes.fixed}>
+	          <AddIcon />
+	        </Button>
+	      </Tooltip>
 			</section>
 		)
 	}
