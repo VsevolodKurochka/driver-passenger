@@ -5,9 +5,6 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 
-// Bootstrap
-import { Container } from 'reactstrap'
-
 const styles = theme => ({
 	root: {
 		backgroundColor: theme.palette.background.paper,

@@ -8,7 +8,6 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 
 
 import './index.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
 
 // Partials
 import Menu from './partials/Menu'

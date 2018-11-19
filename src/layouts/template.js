@@ -9,9 +9,8 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import Tooltip from '@material-ui/core/Tooltip'
+import TimeInput from 'material-ui-time-picker'
 
-// Bootstrap
-import { Row } from 'reactstrap'
 
 // My components
 import SimpleCard from '../partials/SimpleCard'
@@ -36,10 +35,10 @@ const styles = theme => ({
 		margin: theme.spacing.unit,
 	},
 	fixed: {
-    position: 'fixed',
-    bottom: theme.spacing.unit * 2,
-    right: theme.spacing.unit * 3,
-  },
+		position: 'fixed',
+		bottom: theme.spacing.unit * 2,
+		right: theme.spacing.unit * 3,
+	},
 });
 
 class Template extends Component {
@@ -67,11 +66,20 @@ class Template extends Component {
 							margin="normal"
 							className={classes.textField}
 						/>
+						<TimeInput
+							mode='12h'
+							name={this.props.inputs[3].name}
+							value={this.props.inputs[3].value}
+							onChange={(time)=> this.props.handleTimeChange(time)}
+							cancelLabel="Закрыть"
+							okLabel="Сохранить"
+							className={classes.textField}
+						/>
 						<Button type="submit" variant="contained" size="large" color="primary" className={classes.button}>
 							Заполнить форму
 						</Button>
 					</form>
-					<Row>
+					<div className="row">
 						{
 							this.props.items.length ?
 								this.props.items.map( (item, index) => {
@@ -92,13 +100,13 @@ class Template extends Component {
 								<p>Нету элементов</p>
 							</div>
 						}
-					</Row>
+					</div>
 				</div>
 				<Tooltip title="Нажмите, чтобы открыть форму">
-	        <Button variant="fab" color="secondary" className={classes.fixed}>
-	          <AddIcon />
-	        </Button>
-	      </Tooltip>
+					<Button variant="fab" color="secondary" className={classes.fixed}>
+						<AddIcon />
+					</Button>
+				</Tooltip>
 			</section>
 		)
 	}

@@ -1,13 +1,12 @@
 // React
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 
 // Firebase
 import * as firebase from 'firebase'
 
 // Template
 import Template from '../layouts/Template'
-
+import TimeInput from 'material-ui-time-picker'
 
 export default class Driver extends Component {
 
@@ -15,7 +14,7 @@ export default class Driver extends Component {
 		name: "",
 		start: "",
 		end: "",
-		time: "",
+		time: new Date(),
 		phone: "",
 		details: "",
 		items: []
@@ -55,19 +54,25 @@ export default class Driver extends Component {
 			name: "",
 			start: "",
 			end: "",
-			time: "",
+			time: new Date(),
 			phone: "",
 			details: ""
 		});
 	}
 	
 	handleChange = event => {
-		
 		const name = event.target.name;
 		const value = event.target.value;
 
 		this.setState({
 			[name]: value,
+		});
+	}
+
+	handleTimeChange = (time) => {
+		console.log(time.getHours());
+		this.setState({
+			time: time
 		});
 	}
 
@@ -100,46 +105,51 @@ export default class Driver extends Component {
 	render() {
 		const { classes } = this.props;
 		return (
-			<Template
-				title="#Подвезу"
-				handleForm={this.handleForm}
-				inputs={
-					[
-						{
-							name: "name",
-							label: "Имя",
-							value: this.state.name
-						},
-						{
-							name: "start",
-							label: "Откуда",
-							value: this.state.start
-						},
-						{
-							name: "end",
-							label: "Куда",
-							value: this.state.end
-						},
-						{
-							name: "time",
-							label: "Время",
-							value: this.state.time
-						},
-						{
-							name: "phone",
-							label: "Телефон",
-							value: this.state.phone
-						},
-						{
-							name: "details",
-							label: "Примечания",
-							value: this.state.details
-						}
-					]
-				}
-				inputChange={this.handleChange}
-				items={this.state.items}
-			/>
+			<div>
+				<Template
+					title="#Подвезу"
+					handleForm={this.handleForm}
+					inputs={
+						[
+							{
+								name: "name",
+								label: "Имя",
+								value: this.state.name
+							},
+							{
+								name: "start",
+								label: "Откуда",
+								value: this.state.start
+							},
+							{
+								name: "end",
+								label: "Куда",
+								value: this.state.end
+							},
+							{
+								name: "time",
+								label: "Время",
+								value: this.state.time
+							},
+							{
+								name: "phone",
+								label: "Телефон",
+								value: this.state.phone
+							},
+							{
+								name: "details",
+								label: "Примечания",
+								value: this.state.details
+							}
+						]
+					}
+					inputChange={this.handleChange}
+					handleTimeChange={this.handleTimeChange}
+					items={this.state.items}
+				/>
+				
+			</div>
+			
 		)
 	}
 }

@@ -5,9 +5,6 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 
-// Bootstrap
-import { Col } from 'reactstrap'
-
 const styles = {
   card: {
     minWidth: 275,
@@ -33,7 +30,7 @@ function SimpleCard(props) {
   const details = props.details
 
   return (
-    <Col sm="6" md="4" className="item-column">
+    <div className="col-sm-6 item-column">
       <Card className={classes.card}>
         <CardContent>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -49,7 +46,7 @@ function SimpleCard(props) {
           {details ? <Typography component="p">Примечания: {details}</Typography> : ""}
         </CardContent>
       </Card>
-    </Col>
+    </div>
   )
 }
 
