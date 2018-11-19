@@ -49,6 +49,10 @@ const styles = theme => ({
 		marginRight: theme.spacing.unit,
 		marginBottom: theme.spacing.unit * 2
 	},
+	pickers: {
+		paddingLeft: 10,
+		width: "100%"
+	},
 	button: {
 		margin: theme.spacing.unit,
 	},
@@ -110,11 +114,11 @@ class Template extends Component {
 					maxWidth='sm'
 				>
 					<DialogTitle>Заполните форму</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Чтобы добавить ваше объявление в общую ленту.
-            </DialogContentText>
-            <form onSubmit={this.props.handleForm} autoComplete="off">
+					<DialogContent>
+						<DialogContentText>
+							Чтобы добавить ваше объявление в общую ленту.
+						</DialogContentText>
+						<form onSubmit={this.props.handleForm} autoComplete="off">
 							<TextField
 								label={this.props.inputs[0].label}
 								value={this.props.inputs[0].value}
@@ -143,16 +147,27 @@ class Template extends Component {
 								</div>
 							</div>
 							<MuiPickersUtilsProvider utils={DateFnsUtils}>
-				        <div className="row">
-				          <div className="col-12 col-sm-6">
-				          	<DatePicker value={this.props.inputs[3].value} label={this.props.inputs[3].label} onChange={this.props.handleDateChange} />
-				          </div>
-				          <div className="col-12 col-sm-6">
-				          	<TimePicker value={this.props.inputs[4].value} ampm={false} label={this.props.inputs[4].label} onChange={this.props.handleTimeChange} />
-				          </div>
-				          
-				        </div>
-				      </MuiPickersUtilsProvider>
+								<div className="row">
+									<div className="col-12 col-sm-6">
+										<DatePicker 
+											value={this.props.inputs[3].value} 
+											label={this.props.inputs[3].label} 
+											onChange={this.props.handleDateChange}
+											className={classes.pickers}
+										/>
+									</div>
+									<div className="col-12 col-sm-6">
+										<TimePicker 
+											value={this.props.inputs[4].value} 
+											ampm={false}
+											label={this.props.inputs[4].label} 
+											onChange={this.props.handleTimeChange}
+											className={classes.pickers}
+										/>
+									</div>
+									
+								</div>
+							</MuiPickersUtilsProvider>
 							<TextField
 								label={this.props.inputs[5].label}
 								value={this.props.inputs[5].value}
@@ -171,7 +186,7 @@ class Template extends Component {
 								Заполнить форму
 							</Button>
 						</form>
-          </DialogContent>
+					</DialogContent>
 				</Dialog>
 			</section>
 		)
