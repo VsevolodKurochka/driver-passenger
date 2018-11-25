@@ -34,9 +34,9 @@ export default class Driver extends Component {
 
 		const rootRef = firebase.database().ref('drivers');
 
+		// Date send
 		let currentDate = new Date();
-		
-		const date = {
+		const dateSend = {
 			timestamp: currentDate,
 			year: currentDate.getFullYear(),
 			month: currentDate.getMonth(),
@@ -45,23 +45,17 @@ export default class Driver extends Component {
 			minutes: currentDate.getMinutes()
 		}
 
-		const day = {
-			timestamp: this.state.day,
-			year: this.state.day.getFullYear(),
-			month: this.state.day.getMonth(),
-			date: this.state.day.getDate(),
-			hours: this.state.day.getHours(),
-			minutes: this.state.day.getMinutes()
-		}
+		// Day
+		let stateDay = this.state.day;
+		const day = stateDay.getDate() + '.' + (stateDay.getMonth() < 12 ? stateDay.getMonth() + 1 : 1) + '.' + stateDay.getFullYear();
 
-		const time = {
-			timestamp: this.state.time,
-			year: this.state.time.getFullYear(),
-			month: this.state.time.getMonth(),
-			date: this.state.time.getDate(),
-			hours: this.state.time.getHours(),
-			minutes: this.state.time.getMinutes()
-		}
+		// Time
+		let stateTime = this.state.time;
+		const time = 
+			(stateTime.getHours() < 10 ? "0" + stateTime.getHours() : stateTime.getHours())
+			+ 
+			':' 
+			+ (stateTime.getMinutes() < 10 ? "0" + stateTime.getMinutes() : stateTime.getMinutes());
 
 		const item = {
 			name: this.state.name,
@@ -71,7 +65,7 @@ export default class Driver extends Component {
 			time: time,
 			phone: this.state.phone,
 			details: this.state.details,
-			dateSend: date
+			dateSend: dateSend
 		}
 
 		// Push to DB

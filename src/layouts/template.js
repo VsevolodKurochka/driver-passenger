@@ -80,7 +80,6 @@ class Template extends Component {
 					</div>
 				</div>
 				<div className={"container " + classes.container}>
-					
 					<div className="row">
 						{
 							this.props.items.length ?
@@ -90,6 +89,7 @@ class Template extends Component {
 											name={item.name}
 											start={item.start}
 											end={item.end}
+											day={item.day}
 											time={item.time}
 											phone={item.phone}
 											details={item.details}
@@ -157,6 +157,12 @@ class Template extends Component {
 											value={this.props.inputs[3].value} 
 											label={this.props.inputs[3].label} 
 											onChange={this.props.handleDateChange}
+											format="dd/MM/yyyy"
+											mask={value =>
+												value
+													? [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]
+													: []
+											}
 											className={classes.textField + " " + classes.pickers}
 											cancelLabel="Закрыть"
 											okLabel="Подтвердить"
