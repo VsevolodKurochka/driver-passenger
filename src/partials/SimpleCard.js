@@ -38,7 +38,6 @@ function SimpleCard(props) {
 						{start} - {end}
 					</Typography>
 					<Typography className={classes.pos} color="textSecondary">
-						{/*{day} в {time}  day.date + "." + day.month + "." + day.year this.props.day.month */}
 						{day} в {time}
 					</Typography>
 					{phone ? <Typography className={classes.phone} color="textSecondary"><a href={"tel:" + phone}>{phone}</a></Typography> : ""}

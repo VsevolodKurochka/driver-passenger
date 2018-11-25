@@ -17,10 +17,14 @@ const styles = theme => ({
 		flexGrow: 1,
 	},
 	menuItem: {
-		color: '#fff'
+		textDecoration: 'none',
+
+		marginRight: theme.spacing.unit * 2
 	},
-	menuItemLink: {
-		textDecoration: 'none'
+	menuItemSpan: {
+		fontSize: '25px',
+		fontWeight: '100',
+		color: theme.palette.background.paper
 	}
 });
 
@@ -36,8 +40,12 @@ class Menu extends Component {
 			<div className={classes.root}>
 				<AppBar position="static">
 					<Toolbar>
-						<NavLink to="/" style={{ textDecoration: 'none', 'color': 'inherit'}}><Typography component="span">#Подвезу</Typography></NavLink>
-						<NavLink to="/passenger/" style={{ textDecoration: 'none', 'color': 'inherit'}}><Typography component="span">#Подвезите</Typography></NavLink>
+						<NavLink to="/" className={classes.menuItem}>
+							<Typography component="span" className={classes.menuItemSpan}>#Подвезу</Typography>
+						</NavLink>
+						<NavLink to="/passenger/" className={classes.menuItem}>
+							<Typography component="span" className={classes.menuItemSpan}>#Подвезите</Typography>
+						</NavLink>
 					</Toolbar>
 				</AppBar>
 			</div>
