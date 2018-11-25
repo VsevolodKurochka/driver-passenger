@@ -7,7 +7,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 
 import { NavLink } from "react-router-dom"
-
+import Typography from '@material-ui/core/Typography'
 
 const styles = theme => ({
 	root: {
@@ -36,8 +36,8 @@ class Menu extends Component {
 			<div className={classes.root}>
 				<AppBar position="static">
 					<Toolbar>
-						<NavLink to="/" style={{ textDecoration: 'none', 'color': 'inherit'}}>#Подвезу</NavLink>
-						<NavLink to="/passenger/" style={{ textDecoration: 'none', 'color': 'inherit'}}>#Подвезите</NavLink>
+						<NavLink to="/" style={{ textDecoration: 'none', 'color': 'inherit'}}><Typography component="span">#Подвезу</Typography></NavLink>
+						<NavLink to="/passenger/" style={{ textDecoration: 'none', 'color': 'inherit'}}><Typography component="span">#Подвезите</Typography></NavLink>
 					</Toolbar>
 				</AppBar>
 			</div>

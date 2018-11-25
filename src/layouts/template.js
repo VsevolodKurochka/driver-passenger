@@ -35,7 +35,8 @@ const styles = theme => ({
 	},
 	container: {
 		marginTop: theme.spacing.unit * 5,
-		marginBottom: theme.spacing.unit * 5
+		marginBottom: theme.spacing.unit * 5,
+		minHeight: "50vh"
 	},
 	heroContent: {
 		maxWidth: 600,
@@ -80,29 +81,29 @@ class Template extends Component {
 					</div>
 				</div>
 				<div className={"container " + classes.container}>
-					<div className="row">
-						{
-							this.props.items.length ?
-								this.props.items.map( (item, index) => {
-									return(
-										<SimpleCard 
-											name={item.name}
-											start={item.start}
-											end={item.end}
-											day={item.day}
-											time={item.time}
-											phone={item.phone}
-											details={item.details}
-											key={index} 
-										/>
-									)
-								})
-							:
-							<div>
-								<p>Нету элементов</p>
+					{
+						this.props.items.length ?
+							<div className="row">
+								{
+									this.props.items.map( (item, index) => {
+										return(
+											<SimpleCard 
+												name={item.name}
+												start={item.start}
+												end={item.end}
+												day={item.day}
+												time={item.time}
+												phone={item.phone}
+												details={item.details}
+												key={index} 
+											/>
+										)
+									})
+								}
 							</div>
-						}
-					</div>
+						:
+						<Typography component="h4" variant="h6" align="center">Нету элементов. Добавьте через форму.</Typography>
+					}
 				</div>
 				<Tooltip title="Нажмите, чтобы добавить ">
 					<Button variant="fab" color="secondary" className={classes.fixed} onClick={this.props.functionModalOpen}>
