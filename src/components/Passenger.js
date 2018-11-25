@@ -1,51 +1,42 @@
+// React
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 
 // Firebase
 import * as firebase from 'firebase'
 
-// Material
-import { withStyles } from '@material-ui/core/styles'
-import Typography from '@material-ui/core/Typography'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
+// Template
+import Template from '../layouts/Template'
+import TimeInput from 'material-ui-time-picker'
 
-// My components
-import SimpleCard from '../partials/SimpleCard'
+export default class Driver extends Component {
 
-const styles = theme => ({
-	textField: {
-		marginLeft: theme.spacing.unit,
-		marginRight: theme.spacing.unit,
-	},
-	button: {
-		margin: theme.spacing.unit,
-	},
-});
-
-class Passenger extends Component {
-	constructor(){
-		super();
-		this.state = {
-			name: '',
-			start: '',
-			end: '',
-			time: '',
-			phone: '',
-			details: '',
-			items: [],
-			speed: 15
-		};
+	state = {
+		name: "",
+		start: "",
+		end: "",
+		day: new Date(),
+		time: new Date(),
+		phone: "",
+		details: "",
+		statusModalOpen: false,
+		items: []
 	}
 
+	functionModalOpen = () => {
+		this.setState({statusModalOpen: true})
+	}
+ 	functionModalClose = () => {
+ 		this.setState({statusModalOpen: false})
+ 	}
+ 
 	handleForm = event => {
 		event.preventDefault();
 
 		const rootRef = firebase.database().ref('passengers');
 
+		// Date send
 		let currentDate = new Date();
-		
-		const date = {
+		const dateSend = {
 			timestamp: currentDate,
 			year: currentDate.getFullYear(),
 			month: currentDate.getMonth(),
@@ -54,14 +45,27 @@ class Passenger extends Component {
 			minutes: currentDate.getMinutes()
 		}
 
+		// Day
+		let stateDay = this.state.day;
+		const day = stateDay.getDate() + '.' + (stateDay.getMonth() < 12 ? stateDay.getMonth() + 1 : 1) + '.' + stateDay.getFullYear();
+
+		// Time
+		let stateTime = this.state.time;
+		const time = 
+			(stateTime.getHours() < 10 ? "0" + stateTime.getHours() : stateTime.getHours())
+			+ 
+			':' 
+			+ (stateTime.getMinutes() < 10 ? "0" + stateTime.getMinutes() : stateTime.getMinutes());
+
 		const item = {
 			name: this.state.name,
 			start: this.state.start,
 			end: this.state.end,
-			time: this.state.time,
+			day: day,
+			time: time,
 			phone: this.state.phone,
 			details: this.state.details,
-			dateSend: date
+			dateSend: dateSend
 		}
 
 		// Push to DB
@@ -72,19 +76,33 @@ class Passenger extends Component {
 			name: "",
 			start: "",
 			end: "",
-			time: "",
+			day: new Date(),
+			time: new Date(),
 			phone: "",
-			details: ""
+			details: "",
+			statusModalOpen: false
 		});
+
 	}
 	
 	handleChange = event => {
-		
 		const name = event.target.name;
 		const value = event.target.value;
 
 		this.setState({
 			[name]: value,
+		});
+	}
+
+	handleTimeChange = (date) => {
+		this.setState({
+			time: date
+		});
+	}
+
+	handleDateChange = (date) => {
+		this.setState({
+			day: date
 		});
 	}
 
@@ -101,6 +119,7 @@ class Passenger extends Component {
 					name: items[item].name,
 					start: items[item].start,
 					end: items[item].end,
+					day: items[item].day,
 					time: items[item].time,
 					phone: items[item].phone,
 					details: items[item].details
@@ -117,96 +136,62 @@ class Passenger extends Component {
 	render() {
 		const { classes } = this.props;
 		return (
-			<section className='section'>
-				<div className="container">
-					<Typography component="h1" variant="h3">#Подвезите</Typography>
-					<Typography component="h2" variant="h6" gutterBottom>Заполните форму, чтобы добавить объявление о том, куда вам надо.</Typography>
-					<form onSubmit={this.handleForm} noValidate autoComplete="off">
-						<div>
-							<TextField
-								label="Имя и фамилия"
-								value={this.state.name}
-								name="name"
-								onChange={this.handleChange}
-								margin="normal"
-								className={classes.textField}
-								variant="outlined"
-							/>
-							<TextField
-								label="Откуда"
-								value={this.state.start}
-								name="start"
-								onChange={this.handleChange}
-								margin="normal"
-								className={classes.textField}
-								variant="outlined"
-							/>
-							<TextField
-								label="Куда"
-								value={this.state.end}
-								name="end"
-								onChange={this.handleChange}
-								margin="normal"
-								className={classes.textField}
-								variant="outlined"
-							/>
-						</div>
-						<div>
-							<TextField
-								label="Время"
-								value={this.state.time}
-								name="time"
-								onChange={this.handleChange}
-								margin="normal"
-								className={classes.textField}
-								variant="outlined"
-							/>
-							<TextField
-								label="Телефон"
-								value={this.state.phone}
-								name="phone"
-								onChange={this.handleChange}
-								margin="normal"
-								className={classes.textField}
-								variant="outlined"
-							/>
-							<TextField
-								label="Примечания"
-								value={this.state.details}
-								name="details"
-								onChange={this.handleChange}
-								margin="normal"
-								className={classes.textField}
-								variant="outlined"
-							/>
-						</div>
-						<div><Button type="submit" variant="contained" size="large" color="primary" className={classes.button}>
-							Заполнить форму
-						</Button></div>
-					</form>
-					<hr/>
-					<div className="row">
-						{
-							this.state.items.length ?
-								this.state.items.map( (item, index) => {
-										return <SimpleCard data={item} key={index} />
-									} 
-								)
-							:
-							<div>
-								<p>Нету элементов</p>
-							</div>
-						}
-					</div>
-				</div>
-			</section>
+			<div>
+				<Template
+					title="#Подвезите"
+					handleForm={this.handleForm}
+					inputs={
+						[
+							{
+								name: "name",
+								label: "Имя",
+								value: this.state.name
+							},
+							{
+								name: "start",
+								label: "Откуда",
+								value: this.state.start
+							},
+							{
+								name: "end",
+								label: "Куда",
+								value: this.state.end
+							},
+							{
+								name: "day",
+								label: "День",
+								value: this.state.day
+							},
+							{
+								name: "time",
+								label: "Время",
+								value: this.state.time
+							},
+							{
+								name: "phone",
+								label: "Телефон",
+								value: this.state.phone
+							},
+							{
+								name: "details",
+								label: "Примечания",
+								value: this.state.details
+							}
+						]
+					}
+					inputChange={this.handleChange}
+					handleTimeChange={this.handleTimeChange}
+					handleDateChange={this.handleDateChange}
+
+					statusModalOpen={this.state.statusModalOpen}
+					functionModalOpen={this.functionModalOpen}
+					functionModalClose={this.functionModalClose}
+					
+					items={this.state.items}
+				/>
+				
+			</div>
+			
 		)
 	}
 }
-
-Passenger.propTypes = {
-	classes: PropTypes.object.isRequired,
-};
-
-
-export default withStyles(styles)(Passenger);
