@@ -28,23 +28,21 @@ function SimpleCard(props) {
 	const { classes, name, start, end, day, time, phone, details } = props
 
 	return (
-		<div className="col-12 col-sm-6 col-md-4 item-column">
-			<Card className={classes.card}>
-				<CardContent>
-					<Typography className={classes.title} color="textSecondary" gutterBottom>
-						{name}
-					</Typography>
-					<Typography variant="h6" component="h2" className={classes.subtitle}>
-						{start} - {end}
-					</Typography>
-					<Typography className={classes.pos} color="textSecondary">
-						{day} в {time}
-					</Typography>
-					{phone ? <Typography className={classes.phone} color="textSecondary"><a href={"tel:" + phone}>{phone}</a></Typography> : ""}
-					{details ? <Typography component="p">{details}</Typography> : ""}
-				</CardContent>
-			</Card>
-		</div>
+		<Card className={classes.card}>
+			<CardContent>
+				<Typography className={classes.title} color="textSecondary" gutterBottom>
+					{name}
+				</Typography>
+				<Typography variant="h6" component="h2" className={classes.subtitle}>
+					{start} - {end}
+				</Typography>
+				<Typography className={classes.pos} color="textSecondary">
+					{day} в {time}
+				</Typography>
+				{phone ? <Typography className={classes.phone} color="textSecondary"><a href={"tel:" + phone}>{phone}</a></Typography> : ""}
+				{details ? <Typography component="p">{details}</Typography> : ""}
+			</CardContent>
+		</Card>
 	)
 }
 

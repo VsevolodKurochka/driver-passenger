@@ -1,15 +1,9 @@
-// React
 import React, { Component } from 'react'
-
-// Firebase
-import * as firebase from 'firebase'
-
-// Template
-import Template from '../layouts/Template'
+import Template from '../layouts/template'
 import TimeInput from 'material-ui-time-picker'
+import {database} from '../firebase';
 
 export default class Driver extends Component {
-
 	state = {
 		name: "",
 		start: "",
@@ -32,7 +26,7 @@ export default class Driver extends Component {
 	handleForm = event => {
 		event.preventDefault();
 
-		const rootRef = firebase.database().ref('passengers');
+		const rootRef = database.ref('drivers');
 
 		// Date send
 		let currentDate = new Date();
@@ -107,7 +101,7 @@ export default class Driver extends Component {
 	}
 
 	componentDidMount(){
-		const rootRef = firebase.database().ref('passengers');
+		const rootRef = database.ref('drivers');
 
 		rootRef.on('value', (snapshot) => {
 			let items = snapshot.val();
@@ -134,64 +128,60 @@ export default class Driver extends Component {
 	}
 
 	render() {
-		const { classes } = this.props;
 		return (
-			<div>
-				<Template
-					title="#Подвезите"
-					handleForm={this.handleForm}
-					inputs={
-						[
-							{
-								name: "name",
-								label: "Имя",
-								value: this.state.name
-							},
-							{
-								name: "start",
-								label: "Откуда",
-								value: this.state.start
-							},
-							{
-								name: "end",
-								label: "Куда",
-								value: this.state.end
-							},
-							{
-								name: "day",
-								label: "День",
-								value: this.state.day
-							},
-							{
-								name: "time",
-								label: "Время",
-								value: this.state.time
-							},
-							{
-								name: "phone",
-								label: "Телефон",
-								value: this.state.phone
-							},
-							{
-								name: "details",
-								label: "Примечания",
-								value: this.state.details
-							}
-						]
-					}
-					inputChange={this.handleChange}
-					handleTimeChange={this.handleTimeChange}
-					handleDateChange={this.handleDateChange}
+			<Template
+				title="I'm a driver"
+				subtitle={'Driver, please press "+" and fill in all fields. Indicate from where, where, what time you will go. Provide a mobile phone for communication with passengers. Have a good trip.'}
+				handleForm={this.handleForm}
+				inputs={
+					[
+						{
+							name: "name",
+							label: "Name",
+							value: this.state.name
+						},
+						{
+							name: "start",
+							label: "From",
+							value: this.state.start
+						},
+						{
+							name: "end",
+							label: "To",
+							value: this.state.end
+						},
+						{
+							name: "day",
+							label: "Day",
+							value: this.state.day
+						},
+						{
+							name: "time",
+							label: "Time",
+							value: this.state.time
+						},
+						{
+							name: "phone",
+							label: "Phone",
+							value: this.state.phone
+						},
+						{
+							name: "details",
+							label: "Notes",
+							value: this.state.details
+						}
+					]
+				}
+				inputChange={this.handleChange}
+				handleTimeChange={this.handleTimeChange}
+				handleDateChange={this.handleDateChange}
 
-					statusModalOpen={this.state.statusModalOpen}
-					functionModalOpen={this.functionModalOpen}
-					functionModalClose={this.functionModalClose}
-					
-					items={this.state.items}
-				/>
-				
-			</div>
-			
+				statusModalOpen={this.state.statusModalOpen}
+				functionModalOpen={this.functionModalOpen}
+				functionModalClose={this.functionModalClose}
+
+				items={this.state.items}
+			/>
 		)
 	}
 }

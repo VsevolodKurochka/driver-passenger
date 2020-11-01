@@ -1,12 +1,7 @@
-// React
 import React, { Component } from 'react'
-
-// Firebase
-import * as firebase from 'firebase'
-
-// Template
-import Template from '../layouts/Template'
+import Template from '../layouts/template'
 import TimeInput from 'material-ui-time-picker'
+import {database} from '../firebase';
 
 export default class Driver extends Component {
 
@@ -32,7 +27,7 @@ export default class Driver extends Component {
 	handleForm = event => {
 		event.preventDefault();
 
-		const rootRef = firebase.database().ref('drivers');
+		const rootRef = database.ref('passengers');
 
 		// Date send
 		let currentDate = new Date();
@@ -107,7 +102,7 @@ export default class Driver extends Component {
 	}
 
 	componentDidMount(){
-		const rootRef = firebase.database().ref('drivers');
+		const rootRef = database.ref('passengers');
 
 		rootRef.on('value', (snapshot) => {
 			let items = snapshot.val();
@@ -138,43 +133,44 @@ export default class Driver extends Component {
 		return (
 			<div>
 				<Template
-					title="#Подвезу"
+					title="I'm a passenger"
+					subtitle={"Passenger, please press "+" and fill in all fields. Indicate from where, where, what time you will go. Provide a mobile phone for communication with driver. Have a good trip."}
 					handleForm={this.handleForm}
 					inputs={
 						[
 							{
 								name: "name",
-								label: "Имя",
+								label: "Name",
 								value: this.state.name
 							},
 							{
 								name: "start",
-								label: "Откуда",
+								label: "From",
 								value: this.state.start
 							},
 							{
 								name: "end",
-								label: "Куда",
+								label: "To",
 								value: this.state.end
 							},
 							{
 								name: "day",
-								label: "День",
+								label: "Day",
 								value: this.state.day
 							},
 							{
 								name: "time",
-								label: "Время",
+								label: "Time",
 								value: this.state.time
 							},
 							{
 								name: "phone",
-								label: "Телефон",
+								label: "Phone",
 								value: this.state.phone
 							},
 							{
 								name: "details",
-								label: "Примечания",
+								label: "Notes",
 								value: this.state.details
 							}
 						]

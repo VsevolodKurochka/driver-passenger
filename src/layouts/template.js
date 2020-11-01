@@ -1,50 +1,38 @@
-// React
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
-// Material Design
 import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
-
 import TextField from '@material-ui/core/TextField'
 import InputMask from 'react-input-mask'
-
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import Tooltip from '@material-ui/core/Tooltip'
-
-// Pickers
 import { MuiPickersUtilsProvider } from 'material-ui-pickers'
 import DateFnsUtils from '@date-io/date-fns'
 import { TimePicker } from 'material-ui-pickers'
 import { DatePicker } from 'material-ui-pickers'
 import ruLocale from 'date-fns/locale/ru'
-
 import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-
-
-// My components
 import SimpleCard from '../partials/SimpleCard'
+import './style.css';
 
 const styles = theme => ({
-	heroUnit: {
-		backgroundColor: theme.palette.background.paper,
+	section: {
+		paddingTop: 45,
+		paddingBottom: 45
 	},
-	container: {
-		marginTop: theme.spacing.unit * 5,
-		marginBottom: theme.spacing.unit * 5,
-		minHeight: "50vh"
-	},
-	heroContent: {
-		maxWidth: 600,
-		margin: '0 auto',
-		padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
+	header: {
+		marginBottom: 30
 	},
 	title: {
-		fontWeight: 'bold'
+		fontWeight: 'bold',
+		color: "#fff"
+	},
+	subtitle: {
+		color: "#fff"
 	},
 	textField: {
 		width: "100%",
@@ -72,18 +60,19 @@ class Template extends Component {
 	render() {
 		const { classes } = this.props;
 		return (
-			<section className='section'>
-				<div className={classes.heroUnit}>
-					<div className={classes.heroContent}>
-						<Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom className={classes.title}>
-							{this.props.title}
-						</Typography>
-					</div>
+			<section className={classes.section}>
+				<div className={`container ${classes.header}`}>
+					<Typography component="h1" variant="h2" gutterBottom className={classes.title}>
+						{this.props.title}
+					</Typography>
+					<Typography component="h5" variant="h5" className={classes.subtitle}>
+						{this.props.subtitle}
+					</Typography>
 				</div>
 				<div className={"container " + classes.container}>
 					{
 						this.props.items.length ?
-							<div className="row">
+							<div className="grid-list">
 								{
 									this.props.items.map( (item, index) => {
 										return(
@@ -102,7 +91,9 @@ class Template extends Component {
 								}
 							</div>
 						:
-						<Typography component="h4" variant="h6" align="center">Нету элементов. Добавьте через форму.</Typography>
+						<Typography component="h4" variant="h6" color={'error'} align="center">
+							There are no active trips. Be the first to add an ad.
+						</Typography>
 					}
 				</div>
 				<Tooltip title="Нажмите, чтобы добавить ">
@@ -115,10 +106,10 @@ class Template extends Component {
 					onClose={this.props.functionModalClose}
 					maxWidth='sm'
 				>
-					<DialogTitle>Заполните форму</DialogTitle>
+					<DialogTitle>Fill the form</DialogTitle>
 					<DialogContent>
 						<DialogContentText>
-							Чтобы добавить ваше объявление в общую ленту.
+							To add your ad to the general feed.
 						</DialogContentText>
 						<form onSubmit={this.props.handleForm} autoComplete="off">
 							<TextField
@@ -165,8 +156,8 @@ class Template extends Component {
 													: []
 											}
 											className={classes.textField + " " + classes.pickers}
-											cancelLabel="Закрыть"
-											okLabel="Подтвердить"
+											cancelLabel="Close"
+											okLabel="Confirm"
 											disablePast={true}
 											required
 										/>
@@ -178,8 +169,8 @@ class Template extends Component {
 											label={this.props.inputs[4].label} 
 											onChange={this.props.handleTimeChange}
 											className={classes.textField + " " + classes.pickers}
-											cancelLabel="Закрыть"
-											okLabel="Подтвердить"
+											cancelLabel="Close"
+											okLabel="Confirm"
 											required
 										/>
 									</div>
@@ -210,7 +201,7 @@ class Template extends Component {
 								className={classes.textField}
 							/>
 							<Button type="submit" variant="contained" size="large" color="primary" fullWidth={true} className={classes.button}>
-								Заполнить форму
+								Create ad
 							</Button>
 						</form>
 					</DialogContent>
